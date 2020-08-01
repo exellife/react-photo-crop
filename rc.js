@@ -83,9 +83,7 @@ async function build() {
         await bundle_min.generate(outputOptions[i]);
         await bundle_min.write(outputOptions[i]);
     }
-    // const bundle_ = await rollup.rollup(inputOptions[1]);
-    // await bundle_.generate(outputOptions[1]);
-    // await bundle_.write(outputOptions[1]);
+
 }
 
 build();
