@@ -1,0 +1,32 @@
+{
+  "name": "react-photo-crop",
+  "version": "1.0.0-beta-a",
+  "description": "A simple react component for cropping images with styling options",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "node rc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "jest": "^26.1.0",
+    "rollup": "^2.23.0",
+    "rollup-plugin-peer-deps-external": "^2.2.3",
+    "rollup-plugin-terser": "^6.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "reactdom": "^16.13.1"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
