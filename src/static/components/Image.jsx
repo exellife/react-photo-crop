@@ -39,7 +39,7 @@ function coords() {
     }
 }
 
-export function Img({ id, imgStyles, defaultSrc }) {
+export function Img({ id, imgStyles, defaultSrc, classNames }) {
 
     const {
         state, setDimensions,
@@ -186,6 +186,7 @@ export function Img({ id, imgStyles, defaultSrc }) {
             onMouseUp={(e) => mouseUp(e)}
             onMouseMove={(e) => mouseMove(e)}
             onMouseLeave={e => mouseLeave(e)}
+            className={classNames}
         />
 
     )

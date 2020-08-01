@@ -59,12 +59,14 @@ class Styles {
   constructor() {
     this.styles = {
       modal: {
-        position: 'absolute',
+        position: 'fixed',
         top: '0',
         bottom: '0',
-        right: '0',
         left: '0',
-        background: "rgba(0, 0, 0, 0.74)"
+        right: '0',
+        height: '100%',
+        width: '100%',
+        background: 'rgba(0, 0, 0, 0.548)'
       },
       window: {
         position: 'relative',
@@ -85,18 +87,21 @@ class Styles {
         background: 'transparent'
       },
       crop: {
-        padding: '20px'
+        padding: '20px',
+        display: 'block'
       },
       cropIn: {
         margin: 'auto',
         width: '240px',
         height: '240px',
-        position: 'relative'
+        position: 'relative',
+        display: 'block'
       },
       photoCrop: {
         width: '100%',
         height: '100%',
-        position: 'relative'
+        position: 'relative',
+        display: 'block'
       },
       img: {
         position: 'absolute',
@@ -146,18 +151,20 @@ class Styles {
       inputFileBtn: {}
     };
     this.classes = {
-      modal: 'rpc-modal',
-      window: 'rpc-window',
-      cropOut: 'rpc-crop-out',
-      crop: 'rpc-crop',
-      cropIn: 'rpc-crop-in',
-      after: 'rpc-after',
-      modalBtn: 'rpc-btn',
-      rangeWrap: 'rpc-range-wrap',
-      rangeVal: 'rpc-range-val',
-      cancelBtn: 'rpc-cancel-btn',
-      actionBtn: 'rpc-action-btn',
-      inputFileBtn: 'rpc-input-file'
+      modal: ['rpc-modal'],
+      window: ['rpc-window'],
+      cropOut: ['rpc-crop-out'],
+      crop: ['rpc-crop'],
+      cropIn: ['rpc-crop-in'],
+      photoCrop: ['rpc-photo-crop', 'soime', 'class', 'name', 'goes', 'here'],
+      img: ['rpc-img'],
+      after: ['rpc-after'],
+      modalBtn: ['rpc-btn'],
+      rangeWrap: ['rpc-range-wrap'],
+      rangeVal: ['rpc-range-val'],
+      cancelBtn: ['rpc-cancel-btn', 'asdas', 'some'],
+      actionBtn: ['rpc-action-btn'],
+      inputFileBtn: ['rpc-input-file']
     };
     this.ids = {
       photoCrop: 'rpc-photo-crop',
@@ -179,6 +186,22 @@ class Styles {
       if (k === target) {
         this.styles[k] = _objectSpread2(_objectSpread2({}, this.styles[k]), style);
       }
+    }
+  }
+
+  addClassName(target, className) {
+    if (this.classes[target]) this.classes[target].push(className);
+  }
+
+  removeClassName(target, className) {
+    if (this.classes[target]) {
+      var newClasses = [];
+
+      for (var clsName of this.classes[target]) {
+        if (clsName !== className) newClasses.push(className);
+      }
+
+      this.classes[target] = newClasses;
     }
   }
 
@@ -318,7 +341,8 @@ function Img(_ref) {
   var {
     id,
     imgStyles,
-    defaultSrc
+    defaultSrc,
+    classNames
   } = _ref;
   var {
     state,
@@ -450,7 +474,8 @@ function Img(_ref) {
     onMouseDown: e => mouseDown(),
     onMouseUp: e => mouseUp(),
     onMouseMove: e => mouseMove(e),
-    onMouseLeave: e => mouseLeave()
+    onMouseLeave: e => mouseLeave(),
+    className: classNames
   });
 }
 
@@ -460,7 +485,8 @@ var useContext$1 = React.useContext;
 function PhotoCrop(_ref) {
   var {
     id,
-    pcStyles
+    pcStyles,
+    classNames
   } = _ref;
   var {
     setBoundaries
@@ -472,7 +498,8 @@ function PhotoCrop(_ref) {
   return React.createElement("div", {
     id: id,
     style: _objectSpread2({}, pcStyles),
-    ref: pcRef
+    ref: pcRef,
+    className: classNames
   });
 }
 
@@ -695,6 +722,7 @@ function RPCButton(_ref) {
     classes,
     nameValues
   } = _ref;
+  if (!styles || !classes || !nameValues) throw Error('most likely RPCStyles configs were not passed to component -> RPCButton');
   var {
     openModal
   } = useContext$4(RPCContext);
@@ -712,38 +740,42 @@ function RPCModal(_ref2) {
     styles,
     classes,
     ids,
-    defaultSrc,
     nameValues,
+    defaultSrc,
     rpcHandler
   } = _ref2;
-  if (!rpcHandler) throw Error("handler function wasn't provided.");
+  if (!styles || !classes || !ids || !nameValues) throw Error('most likely RPCStyles configs were not passed to component -> RPCModal');
+  if (!defaultSrc) throw Error('default image source was not provided to component -> RPCModal ');
+  if (!rpcHandler) throw Error("handler function wasn't provided to component -> RPCModal");
   var {
     state
   } = useContext$4(RPCContext);
   return React.createElement(React.Fragment, null, state.open ? React.createElement("div", {
-    className: classes.modal,
+    className: classes.modal.join(" "),
     style: _objectSpread2({}, styles.modal)
   }, React.createElement("div", {
-    className: classes.window,
+    className: classes.window.join(" "),
     style: _objectSpread2({}, styles.window)
   }, React.createElement("div", {
-    className: classes.cropOut,
+    className: classes.cropOut.join(" "),
     style: _objectSpread2({}, styles.cropOut)
   }, React.createElement("div", {
-    className: classes.crop,
+    className: classes.crop.join(" "),
     style: _objectSpread2({}, styles.crop)
   }, React.createElement("div", {
-    className: classes.cropIn,
+    className: classes.cropIn.join(" "),
     style: _objectSpread2({}, styles.cropIn)
   }, React.createElement(PhotoCrop, {
+    classNames: classes.photoCrop.join(" "),
     id: ids.photoCrop,
     pcStyles: styles.photoCrop
   }), React.createElement(Img, {
     imgStyles: styles.img,
     id: ids.img,
-    defaultSrc: defaultSrc
+    defaultSrc: defaultSrc,
+    classNames: classes.img.join(" ")
   }), React.createElement("div", {
-    className: classes.after,
+    className: classes.after.join(" "),
     style: _objectSpread2({}, styles.after)
   })))), React.createElement(Zoom, {
     id: ids.zoom,
@@ -752,8 +784,8 @@ function RPCModal(_ref2) {
     rangeStyles: styles.range,
     rangeVal: styles.rangeVal,
     classNames: {
-      rangeWrapCls: classes.rangeWrap,
-      rangeValCls: classes.rangeVal
+      rangeWrapCls: classes.rangeWrap.join(' '),
+      rangeValCls: classes.rangeVal.join(' ')
     }
   }), React.createElement(Buttons, {
     id: ids.buttons,
@@ -762,9 +794,9 @@ function RPCModal(_ref2) {
       inputFileId: ids.inputFileBtn
     },
     classNames: {
-      cancelBtn: classes.cancelBtn,
-      actionBtn: classes.actionBtn,
-      inputFileBtn: classes.inputFileBtn
+      cancelBtn: classes.cancelBtn.join(' '),
+      actionBtn: classes.actionBtn.join(' '),
+      inputFileBtn: classes.inputFileBtn.join(' ')
     },
     btnStyles: {
       actionBtnStyle: styles.actionBtn,

@@ -4,7 +4,7 @@ const useEffect = React.useEffect;
 const useRef = React.useRef;
 const useContext = React.useContext;
 
-export function PhotoCrop({ id, pcStyles }) {
+export function PhotoCrop({ id, pcStyles, classNames }) {
 
     const { setBoundaries } = useContext(RPCContext);
 
@@ -19,6 +19,7 @@ export function PhotoCrop({ id, pcStyles }) {
             id={id}
             style={{ ...pcStyles }}
             ref={pcRef}
+            className={classNames}
         >
         </div>
     )

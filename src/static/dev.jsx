@@ -6,8 +6,6 @@ import { RPCCtxState, RPCStyles, RPCModal, RPCButton, useRPC } from 'ReactPhotoC
 const useState = React.useState;
 const target = document.getElementById('root');
 
-console.log(RPCCtxState, RPCStyles, RPCModal, RPCButton, useRPC)
-
 function Test() {
 
     const [src, setSrc] = useState("");

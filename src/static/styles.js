@@ -3,12 +3,14 @@ class Styles {
     constructor() {
         this.styles = {
             modal: {
-                position: 'absolute',
+                position: 'fixed',
                 top: '0',
                 bottom: '0',
-                right: '0',
                 left: '0',
-                background: `rgba(0, 0, 0, 0.74)`,
+                right: '0',
+                height: '100%',
+                width: '100%',
+                background: 'rgba(0, 0, 0, 0.548)',
             },
             window: {
                 position: 'relative',
@@ -30,17 +32,20 @@ class Styles {
             },
             crop: {
                 padding: '20px',
+                display: 'block',
             },
             cropIn: {
                 margin: 'auto',
                 width: '240px',
                 height: '240px',
                 position: 'relative',
+                display: 'block',
             },
             photoCrop: {
                 width: '100%',
                 height: '100%',
                 position: 'relative',
+                display: 'block',
             },
             img: {
                 position: 'absolute',
@@ -99,19 +104,24 @@ class Styles {
             }
         }
 
+        // TODO
+        // needs to be an object of arrays for each target element
+        // so it would be passible to add class
         this.classes = {
-            modal: 'rpc-modal',
-            window: 'rpc-window',
-            cropOut: 'rpc-crop-out',
-            crop: 'rpc-crop',
-            cropIn: 'rpc-crop-in',
-            after: 'rpc-after',
-            modalBtn: 'rpc-btn',
-            rangeWrap: 'rpc-range-wrap',
-            rangeVal: 'rpc-range-val',
-            cancelBtn: 'rpc-cancel-btn',
-            actionBtn: 'rpc-action-btn',
-            inputFileBtn: 'rpc-input-file',
+            modal: ['rpc-modal'],
+            window: ['rpc-window'],
+            cropOut: ['rpc-crop-out'],
+            crop: ['rpc-crop'],
+            cropIn: ['rpc-crop-in'],
+            photoCrop: ['rpc-photo-crop', 'soime', 'class', 'name', 'goes', 'here'],
+            img: ['rpc-img'],
+            after: ['rpc-after'],
+            modalBtn: ['rpc-btn'],
+            rangeWrap: ['rpc-range-wrap'],
+            rangeVal: ['rpc-range-val'],
+            cancelBtn: ['rpc-cancel-btn', 'asdas', 'some'],
+            actionBtn: ['rpc-action-btn'],
+            inputFileBtn: ['rpc-input-file'],
         }
 
         this.ids = {
@@ -146,11 +156,59 @@ class Styles {
             'after', 'modalBtn', 'zoom', 'rangeWrap',
             'range', 'rangeVal', 'buttons', 'cancelBtn', 'actionBtn', 'inputFileBtn'
         ]
-        
+
         for (const k in this.styles) {
             if (k === target) {
                 this.styles[k] = { ...this.styles[k], ...style }
-            } 
+            }
+        }
+    }
+
+    /**
+     * `addClassName` adds a new className to target element.
+     * Available elements are:
+     *  `modal`, `window`, `cropOut`, `crop`, `cropIn`,
+     * `photoCrop`, `img`, `after`, `modalBtn`, `rangeWrap`,
+     * `rangeVal`, `cancelBtn`, `actionBtn`, `inputFileBtn`
+     * @param {String} target - target element
+     * @param {String} className - className to add
+     */
+    addClassName(target, className) {
+        // modal: ['rpc-modal'],
+        // window: ['rpc-window'],
+        // cropOut: ['rpc-crop-out'],
+        // crop: ['rpc-crop'],
+        // cropIn: ['rpc-crop-in'],
+        // photoCrop: ['rpc-photo-crop'],
+        // img: ['rpc-img'],
+        // after: ['rpc-after'],
+        // modalBtn: ['rpc-btn'],
+        // rangeWrap: ['rpc-range-wrap'],
+        // rangeVal: ['rpc-range-val'],
+        // cancelBtn: ['rpc-cancel-btn'],
+        // actionBtn: ['rpc-action-btn'],
+        // inputFileBtn: ['rpc-input-file'],
+        if (this.classes[target])
+            this.classes[target].push(className)
+    }
+
+    /**
+     * `removeClassName` removes className from target element
+     * Available elements are:
+     *  `modal`, `window`, `cropOut`, `crop`, `cropIn`,
+     * `photoCrop`, `img`, `after`, `modalBtn`, `rangeWrap`,
+     * `rangeVal`, `cancelBtn`, `actionBtn`, `inputFileBtn`
+     * @param {String} target - target element 
+     * @param {String} className - className to remove
+     */
+    removeClassName(target, className) {
+        if (this.classes[target]) {
+            const newClasses = [];
+            for (const clsName of this.classes[target]) {
+                if (clsName !== className)
+                    newClasses.push(className)
+            }
+            this.classes[target] = newClasses;
         }
     }
 

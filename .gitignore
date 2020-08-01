@@ -1,3 +1,5 @@
 node_modules
 src/__trash
 package-lock.json
+watch_rc.js
+dev
