@@ -55,14 +55,17 @@ export function RPCButton({ styles, classes, nameValues, ids }) {
         //     style={{ ...styles.modalBtn }}
         //     onClick={(e) => openModal()}
         // >{modalBtn}</button>
-        <input
-            type="file"
-            accept="image/png, image/jpeg, image/webp"
-            id={ids.inputFileBtn}
-            style={{ ...styles.inputFileBtnStyles }}
-            className={classes.inputFileBtn.join(" ")}
-            onChange={(e) => downloadFile(e)}
-        />
+        <label htmlFor={ids.inputFileBtn} style={{ ...styles.inputFileBtnStyles }}
+            className={classes.inputFileBtn.join(" ")}>
+            Change
+            <input
+                type="file"
+                accept="image/png, image/jpeg, image/webp"
+                id={ids.inputFileBtn}
+                onChange={(e) => downloadFile(e)}
+                style={{ visibility: 'hidden', width: '0.1px' }}
+            />
+        </label>
     )
 }
 
