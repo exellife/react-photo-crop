@@ -27,7 +27,7 @@ function Test() {
                     {...RPCStyles.config}
                     // defaultSrc={"https://images-na.ssl-images-amazon.com/images/I/81PGeOlXGYL._AC_SL1500_.jpg"}
 
-                    defaultSrc={"https://media.gettyimages.com/photos/manhattan-bridge-new-york-picture-id625418406?s=612x612"}
+                    // defaultSrc={"https://media.gettyimages.com/photos/manhattan-bridge-new-york-picture-id625418406?s=612x612"}
 
                     // defaultSrc={"https://miro.medium.com/max/601/1*CjEqlt11pvJQCRLTO_FTRw.png"}
 

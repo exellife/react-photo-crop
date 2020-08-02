@@ -143,10 +143,6 @@ export function RPCCtxState({ children }) {
         
     }
 
-    function doTheJob() {
-        return cropHandler.calculate();
-    }
-
     return (
         <RPCContext.Provider
             value={{
@@ -159,7 +155,6 @@ export function RPCCtxState({ children }) {
                 zoom,
                 closeModal,
                 openModal,
-                doTheJob,
 
                 state: state,
             }}

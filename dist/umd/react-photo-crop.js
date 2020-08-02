@@ -156,13 +156,13 @@
         cropOut: ['rpc-crop-out'],
         crop: ['rpc-crop'],
         cropIn: ['rpc-crop-in'],
-        photoCrop: ['rpc-photo-crop', 'soime', 'class', 'name', 'goes', 'here'],
+        photoCrop: ['rpc-photo-crop'],
         img: ['rpc-img'],
         after: ['rpc-after'],
         modalBtn: ['rpc-btn'],
         rangeWrap: ['rpc-range-wrap'],
         rangeVal: ['rpc-range-val'],
-        cancelBtn: ['rpc-cancel-btn', 'asdas', 'some'],
+        cancelBtn: ['rpc-cancel-btn'],
         actionBtn: ['rpc-action-btn'],
         inputFileBtn: ['rpc-input-file']
       };
@@ -189,8 +189,10 @@
       }
     }
 
-    addClassName(target, className) {
-      if (this.classes[target]) this.classes[target].push(className);
+    addClassName(target, classNames) {
+      if (this.classes[target]) {
+        Array.isArray(classNames) ? this.classes[target] = this.classes[target].concat(classNames) : this.classes[target].push(classNames);
+      }
     }
 
     removeClassName(target, className) {
@@ -730,7 +732,7 @@
       modalBtn
     } = nameValues;
     return React.createElement("button", {
-      className: classes.modalBtn,
+      className: classes.modalBtn.join(' '),
       style: _objectSpread2({}, styles.modalBtn),
       onClick: e => openModal()
     }, modalBtn);

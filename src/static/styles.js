@@ -62,9 +62,9 @@ class Styles {
                 borderRadius: '100%',
                 pointerEvents: 'none',
             },
-            modalBtn: {
+            // modalBtn: {
 
-            },
+            // },
             zoom: {
                 padding: '8px',
                 color: '#fff',
@@ -113,13 +113,13 @@ class Styles {
             cropOut: ['rpc-crop-out'],
             crop: ['rpc-crop'],
             cropIn: ['rpc-crop-in'],
-            photoCrop: ['rpc-photo-crop', 'soime', 'class', 'name', 'goes', 'here'],
+            photoCrop: ['rpc-photo-crop'],
             img: ['rpc-img'],
             after: ['rpc-after'],
-            modalBtn: ['rpc-btn'],
+            // modalBtn: ['rpc-btn'],
             rangeWrap: ['rpc-range-wrap'],
             rangeVal: ['rpc-range-val'],
-            cancelBtn: ['rpc-cancel-btn', 'asdas', 'some'],
+            cancelBtn: ['rpc-cancel-btn'],
             actionBtn: ['rpc-action-btn'],
             inputFileBtn: ['rpc-input-file'],
         }
@@ -133,7 +133,7 @@ class Styles {
         }
 
         this.nameValues = {
-            modalBtn: 'Upload',
+            // modalBtn: 'Upload',
             cancelBtn: 'Cancel',
             actionBtn: 'Upload',
         }
@@ -142,10 +142,10 @@ class Styles {
     /**
      * `addStyle` adds a new style to `target` element
      * or overrides existing style
-     * `Example: addStyle('modalBtn', { background: "#fff", fontSize: "14px" })`
+     * `Example: addStyle('cancelBtn', { background: "#fff", fontSize: "14px" })`
      * 
-     * @param {String} target - available options are: 'modal', `window`, `cropOut`,
-     * `crop`, `cropIn`, `photoCrop`, `img`, `after`, `modalBtn`, `zoom`, `rangeWrap`, `range`, `rangeVal`, `buttons`, `cancelBtn`, `actionBtn`, `inputFileBtn`
+     * @param {`modal` | `window` | `cropOut`| `crop` | `cropIn`| `photoCrop` | `img` | `after` | `zoom` | `rangeWrap` | `range` | `rangeVal` | `buttons` | `cancelBtn` | `actionBtn` | `inputFileBtn`} target - available options are: `modal`, `window`, `cropOut`,
+     * `crop`, `cropIn`, `photoCrop`, `img`, `after`, `zoom`, `rangeWrap`, `range`, `rangeVal`, `buttons`, `cancelBtn`, `actionBtn`, `inputFileBtn`
      * @param {{}} style - style to add
      * `e.g { color: 'green' }`;
      */
@@ -153,7 +153,7 @@ class Styles {
         const targets = [
             'modal', 'window', 'cropOut',
             'crop', 'cropIn', 'photoCrop', 'img',
-            'after', 'modalBtn', 'zoom', 'rangeWrap',
+            'after', 'zoom', 'rangeWrap',
             'range', 'rangeVal', 'buttons', 'cancelBtn', 'actionBtn', 'inputFileBtn'
         ]
 
@@ -168,12 +168,13 @@ class Styles {
      * `addClassName` adds a new className to target element.
      * Available elements are:
      *  `modal`, `window`, `cropOut`, `crop`, `cropIn`,
-     * `photoCrop`, `img`, `after`, `modalBtn`, `rangeWrap`,
+     * `photoCrop`, `img`, `after`, `rangeWrap`,
      * `rangeVal`, `cancelBtn`, `actionBtn`, `inputFileBtn`
-     * @param {String} target - target element
-     * @param {String} className - className to add
+     * @param {`modal` | `window` | `cropOut`| `crop` | `cropIn`| `photoCrop` | `img` | `after` | `zoom` | `rangeWrap` | `range` | `rangeVal` | `buttons` | `cancelBtn` | `actionBtn` | `inputFileBtn`} target - target element
+     * @param {String | String[]} classNames - className to add
      */
-    addClassName(target, className) {
+    addClassName(target, classNames) {
+
         // modal: ['rpc-modal'],
         // window: ['rpc-window'],
         // cropOut: ['rpc-crop-out'],
@@ -188,17 +189,22 @@ class Styles {
         // cancelBtn: ['rpc-cancel-btn'],
         // actionBtn: ['rpc-action-btn'],
         // inputFileBtn: ['rpc-input-file'],
-        if (this.classes[target])
-            this.classes[target].push(className)
+        if (this.classes[target]) {
+            Array.isArray(classNames) ?
+                this.classes[target] = this.classes[target].concat(classNames)
+                :
+                this.classes[target].push(classNames)
+        }
+
     }
 
     /**
      * `removeClassName` removes className from target element
      * Available elements are:
      *  `modal`, `window`, `cropOut`, `crop`, `cropIn`,
-     * `photoCrop`, `img`, `after`, `modalBtn`, `rangeWrap`,
+     * `photoCrop`, `img`, `after`, `rangeWrap`,
      * `rangeVal`, `cancelBtn`, `actionBtn`, `inputFileBtn`
-     * @param {String} target - target element 
+     * @param {`modal` | `window` | `cropOut`| `crop` | `cropIn`| `photoCrop` | `img` | `after` | `zoom` | `rangeWrap` | `range` | `rangeVal` | `buttons` | `cancelBtn` | `actionBtn` | `inputFileBtn`} target - target element 
      * @param {String} className - className to remove
      */
     removeClassName(target, className) {
@@ -231,7 +237,7 @@ class Styles {
     /**
      * `setBtnName` sets a new name for a given target button
      * 
-     * @param {String} target - avalibale options are: `modalBtn`, `actionBtn` and `cancelBtn`
+     * @param {String} target - avalibale options are: `actionBtn` and `cancelBtn`
      * @param {*} name - name to set
      */
     setBtnName(target, name) {

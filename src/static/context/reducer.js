@@ -52,6 +52,7 @@ export function reducer(state = initState, action) {
         case types.setImageSrc: {
             return {
                 ...state,
+                open: true,
                 imageSrc: action.payload
             }
         }

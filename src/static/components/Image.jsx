@@ -39,7 +39,7 @@ function coords() {
     }
 }
 
-export function Img({ id, imgStyles, defaultSrc, classNames }) {
+export function Img({ id, imgStyles, classNames }) {
 
     const {
         state, setDimensions,
@@ -48,7 +48,7 @@ export function Img({ id, imgStyles, defaultSrc, classNames }) {
 
     const imgRef = useRef();
 
-    const imageSrc = state.imageSrc ? state.imageSrc : defaultSrc;
+    const imageSrc = state.imageSrc ? state.imageSrc : '';
 
     const [listen, setListen] = useState(false);
     const _coords = coords();

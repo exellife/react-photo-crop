@@ -14,29 +14,82 @@ export function useRPC() {
     }
 }
 
-export function RPCButton({ styles, classes, nameValues }) {
 
-    if (!styles || !classes || !nameValues)
-        throw Error('most likely RPCStyles configs were not passed to component -> RPCButton');
+export function RPCButton({ styles, classes, nameValues, ids }) {
 
-    const { openModal } = useContext(RPCContext);
-    const { modalBtn } = nameValues;
+    // click the button
+    // open file browser
+    // see if user selected a file
+    // if yes, open modal with photo crop
+    // if not (user decided to not upload a new image)
+    // do nothing
+
+    const {
+        openModal,
+        closeModal,
+        setImageSrc
+    } = useContext(RPCContext);
+
+    function downloadFile(e) {
+
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (evt) => {
+
+                setImageSrc(reader.result);
+            }
+
+            if (file.type && file.type.indexOf('image') === -1) {
+                throw Error(`File is not an image: ${file.type}, ${file}`)
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
 
     return (
-        <button className={classes.modalBtn}
-            style={{ ...styles.modalBtn }}
-            onClick={(e) => openModal()}
-        >{modalBtn}</button>
+
+        // <button className={classes.modalBtn.join(' ')}
+        //     style={{ ...styles.modalBtn }}
+        //     onClick={(e) => openModal()}
+        // >{modalBtn}</button>
+        <input
+            type="file"
+            accept="image/png, image/jpeg, image/webp"
+            id={ids.inputFileBtn}
+            style={{ ...styles.inputFileBtnStyles }}
+            className={classes.inputFileBtn}
+            onChange={(e) => downloadFile(e)}
+        />
     )
 }
 
+
+// export function RPCButton({ styles, classes, nameValues }) {
+
+//     if (!styles || !classes || !nameValues)
+//         throw Error('most likely RPCStyles configs were not passed to component -> RPCButton');
+
+//     const { openModal } = useContext(RPCContext);
+//     const { modalBtn } = nameValues;
+
+//     return (
+//         <button className={classes.modalBtn.join(' ')}
+//             style={{ ...styles.modalBtn }}
+//             onClick={(e) => openModal()}
+//         >{modalBtn}</button>
+//     )
+// }
+
 export function RPCModal({ styles, classes,
-    ids, nameValues, defaultSrc, rpcHandler }) {
+    ids, nameValues, rpcHandler }) {
 
     if (!styles || !classes || !ids || !nameValues)
         throw Error('most likely RPCStyles configs were not passed to component -> RPCModal');
 
-    if (!defaultSrc) throw Error('default image source was not provided to component -> RPCModal ');
+    // if (!defaultSrc) throw Error('default image source was not provided to component -> RPCModal ');
 
     if (!rpcHandler) throw Error(`handler function wasn't provided to component -> RPCModal`);
 
@@ -70,7 +123,6 @@ export function RPCModal({ styles, classes,
                                     <Img
                                         imgStyles={styles.img}
                                         id={ids.img}
-                                        defaultSrc={defaultSrc}
                                         classNames={classes.img.join(" ")}
                                     />
 
@@ -96,18 +148,15 @@ export function RPCModal({ styles, classes,
                             id={ids.buttons}
                             ids={{
                                 buttonsId: ids.buttons,
-                                inputFileId: ids.inputFileBtn,
                             }}
                             classNames={{
                                 cancelBtn: classes.cancelBtn.join(' '),
                                 actionBtn: classes.actionBtn.join(' '),
-                                inputFileBtn: classes.inputFileBtn.join(' '),
                             }}
                             btnStyles={{
                                 actionBtnStyle: styles.actionBtn,
                                 cancelBtnStyle: styles.cancelBtn,
                                 buttonStyles: styles.buttons,
-                                inputFileBtnStyles: styles.inputFileBtn
                             }}
                             btnNames={{
                                 cancelBtnName: nameValues.cancelBtn,
