@@ -77,13 +77,11 @@ const outputOptions = [
 ]
 
 async function build() {
-
     for (let i = 0; i < 4; i++) {
         const bundle_min = await rollup.rollup(inputOptions[i]);
         await bundle_min.generate(outputOptions[i]);
         await bundle_min.write(outputOptions[i]);
     }
-
 }
 
 build();

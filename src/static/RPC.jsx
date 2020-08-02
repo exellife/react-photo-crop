@@ -60,7 +60,7 @@ export function RPCButton({ styles, classes, nameValues, ids }) {
             accept="image/png, image/jpeg, image/webp"
             id={ids.inputFileBtn}
             style={{ ...styles.inputFileBtnStyles }}
-            className={classes.inputFileBtn}
+            className={classes.inputFileBtn.join(" ")}
             onChange={(e) => downloadFile(e)}
         />
     )
