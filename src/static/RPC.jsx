@@ -6,6 +6,8 @@ import { Buttons } from './components/Buttons.jsx';
 import { RPCContext } from './context/context';
 import { cropHandler } from './CropHandler';
 const useContext = React.useContext;
+const useEffect = React.useEffect;
+const useRef = React.useRef;
 
 export function useRPC() {
 
@@ -24,11 +26,16 @@ export function RPCButton({ styles, classes, nameValues, ids }) {
     // if not (user decided to not upload a new image)
     // do nothing
 
+    const inputRef = useRef();
+
     const {
-        openModal,
-        closeModal,
+        state,
         setImageSrc
     } = useContext(RPCContext);
+
+    useEffect(() => {
+        if (!state.open) inputRef.current.value = "";
+    }, [state.open]);
 
     function downloadFile(e) {
 
@@ -57,8 +64,9 @@ export function RPCButton({ styles, classes, nameValues, ids }) {
         // >{modalBtn}</button>
         <label htmlFor={ids.inputFileBtn} style={{ ...styles.inputFileBtnStyles }}
             className={classes.inputFileBtn.join(" ")}>
-            Change
+            {nameValues.inputFileBtn}
             <input
+                ref={inputRef}
                 type="file"
                 accept="image/png, image/jpeg, image/webp"
                 id={ids.inputFileBtn}

@@ -133,7 +133,7 @@ class Styles {
         }
 
         this.nameValues = {
-            // modalBtn: 'Upload',
+            inputFileBtn: 'Change',
             cancelBtn: 'Cancel',
             actionBtn: 'Upload',
         }

@@ -172,6 +172,7 @@ class Styles {
       inputFileBtn: 'rpc-input-file-btn'
     };
     this.nameValues = {
+      inputFileBtn: 'Change',
       cancelBtn: 'Cancel',
       actionBtn: 'Upload'
     };
@@ -681,6 +682,8 @@ class CropHandler {
 var cropHandler = new CropHandler();
 
 var useContext$4 = React.useContext;
+var useEffect$2 = React.useEffect;
+var useRef$2 = React.useRef;
 function useRPC() {
   return {
     getDataURL: () => cropHandler.getDataURL()
@@ -693,11 +696,14 @@ function RPCButton(_ref) {
     nameValues,
     ids
   } = _ref;
+  var inputRef = useRef$2();
   var {
-    openModal,
-    closeModal,
+    state,
     setImageSrc
   } = useContext$4(RPCContext);
+  useEffect$2(() => {
+    if (!state.open) inputRef.current.value = "";
+  }, [state.open]);
 
   function downloadFile(e) {
     var file = e.target.files[0];
@@ -721,7 +727,8 @@ function RPCButton(_ref) {
     htmlFor: ids.inputFileBtn,
     style: _objectSpread2({}, styles.inputFileBtnStyles),
     className: classes.inputFileBtn.join(" ")
-  }, "Change", React.createElement("input", {
+  }, nameValues.inputFileBtn, React.createElement("input", {
+    ref: inputRef,
     type: "file",
     accept: "image/png, image/jpeg, image/webp",
     id: ids.inputFileBtn,
