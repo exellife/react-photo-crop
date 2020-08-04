@@ -110,7 +110,7 @@
         after: {
           content: '',
           position: 'absolute',
-          boxShadow: '0 0 100vw 10vh rgba(0, 0, 0, 0.788)',
+          boxShadow: '0 0 400px 400px rgba(0, 0, 0, 0.788)',
           top: '0',
           bottom: '0',
           left: '0',
@@ -657,7 +657,7 @@
         var imgCtx = imgCanvas.getContext('2d');
         imgCtx.drawImage(img, 0, 0, oWidth, oHeight);
         ctx.drawImage(imgCanvas, sx, sy, sWidth, sHeight, 0, 0, 240, 240);
-        dataURL = canvas.toDataURL();
+        dataURL = canvas.toDataURL('image/jpeg', 0.8);
         flag = true;
       };
 

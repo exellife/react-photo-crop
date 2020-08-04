@@ -1,6 +1,6 @@
 {
   "name": "react-photo-crop",
-  "version": "1.0.0-beta-c",
+  "version": "1.0.0-beta-d",
   "description": "A simple react component with styling options for cropping images",
   "main": "index.js",
   "scripts": {

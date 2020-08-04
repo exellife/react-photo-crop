@@ -65,7 +65,7 @@ class CropHandler {
             ctx.drawImage(imgCanvas, sx, sy, sWidth, sHeight,
                 0, 0, 240, 240);
 
-            dataURL = canvas.toDataURL();
+            dataURL = canvas.toDataURL('image/jpeg', 0.8);
             flag = true;
         }
 

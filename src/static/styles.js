@@ -54,7 +54,7 @@ class Styles {
             after: {
                 content: '',
                 position: 'absolute',
-                boxShadow: '0 0 100vw 10vh rgba(0, 0, 0, 0.788)',
+                boxShadow: '0 0 400px 400px rgba(0, 0, 0, 0.788)',
                 top: '0',
                 bottom: '0',
                 left: '0',
