@@ -28,10 +28,14 @@ class CropHandler {
         this.size = { ...size };
     }
 
-    getDataURL(id = 'rpc-img') {
-        if (!id) id = 'rpc-img';
+
+    /**
+     * 
+     */
+    getDataURL(quality = 0.85) {
+        const id = 'rpc-img';
         const imgOriginal = document.getElementById(id);
-        if (!imgOriginal) throw Error(`Could not find any image with id ${id}... if you changed default styles, make sure to pass an 'id' to useRPC.getDataURL function in the component where it called`);
+        if (!imgOriginal) throw Error(`Could not find any image with id ${id}...`);
 
         // original width and height
         const [oWidth, oHeight] = [imgOriginal.width, imgOriginal.height];
@@ -65,7 +69,7 @@ class CropHandler {
             ctx.drawImage(imgCanvas, sx, sy, sWidth, sHeight,
                 0, 0, 240, 240);
 
-            dataURL = canvas.toDataURL('image/jpeg', 0.8);
+            dataURL = canvas.toDataURL('image/jpeg', quality);
             flag = true;
         }
 

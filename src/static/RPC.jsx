@@ -12,7 +12,7 @@ const useRef = React.useRef;
 export function useRPC() {
 
     return {
-        getDataURL: () => cropHandler.getDataURL(),
+        getDataURL: (q = 0.85) => cropHandler.getDataURL(q),
     }
 }
 
