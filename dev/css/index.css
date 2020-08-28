@@ -1,0 +1,12 @@
+#root {
+    margin-top: 20px;
+}
+
+label.rpc-input-file {
+    border-radius: 5px;
+    box-shadow: 0 0 12px 2px rgba(116, 116, 116, 0.705);
+    background: rgba(42, 53, 196, 0.836);
+    color: rgb(228, 225, 67);
+    padding: 8px 16px;
+    cursor: pointer;
+}

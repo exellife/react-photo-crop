@@ -1,6 +1,7 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const terser = require('rollup-plugin-terser').terser;
 const plugin = [
     peerDepsExternal(),
     nodeResolve({
@@ -12,6 +13,7 @@ const plugin = [
         exclude: 'node_modules/**',
         plugins: [],
     }),
+    terser(),
 ];
 
 export default [
