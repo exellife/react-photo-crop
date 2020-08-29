@@ -39,7 +39,11 @@ function SomeComponent() {
         e.preventDefault();
 
         // call a function
-        rpc.getDataURL() 
+        // with quality parameter from 0 to 1
+        // 0 - worst
+        // 1 - best
+        // defaults to 0.85, if undefined
+        rpc.getDataURL(0.86) 
             // get the data
             // do whatever you want...
             // in this case it's setting src attribute
@@ -64,9 +68,6 @@ function SomeComponent() {
 
             </RPCCtxState>
         
-            {/* the cropped part will appear here,
-                this is used for demo purposes...
-                see handler function above */}
             <img src={src} alt="" />
         </>
     )
@@ -75,6 +76,32 @@ function SomeComponent() {
 ```
 
 ## Styling ##
+
+### CSS ### 
+this is preferable option
+```css
+/* css available class selectors  */
+.rpc-modal { /* ... */ };
+.rpc-window { /* ... */ };
+.rpc-crop-out { /* ... */ };
+.rpc-crop { /* ... */ };
+.rpc-crop-in { /* ... */ };
+.rpc-photo-crop { /* ... */ };
+.rpc-img { /* ... */ };
+.rpc-after { /* ... */ };
+.rpc-range-wrap { /* ... */ };
+.rpc-range-val { /* ... */ };
+.rpc-cancel-btn { /* ... */ };
+.rpc-action-btn { /* ... */ };
+.rpc-input-file { /* ... */ };
+
+/* css available id selectors  */
+#rpc-photo-crop { /* ... */ };
+#rpc-img { /* ... */ };
+#rpc-zoom { /* ... */ };
+#rpc-buttons { /* ... */ };
+#rpc-input-file-btn { /* ... */ };
+```
 
 ### Inline styling ###
 
@@ -136,24 +163,5 @@ RPCStyles.addClassName(
     'inputFileBtn', 
     'single'
 );
-```
-
-### CSS ### 
-this is preferable option
-```css
-/* selectors  */
-.rpc-modal { /* ... */ }
-.rpc-window { /* ... */ }
-.rpc-crop-out { /* ... */ }
-.rpc-crop { /* ... */ }
-.rpc-crop-in { /* ... */ },
-.rpc-photo-crop { /* ... */ }
-.rpc-img { /* ... */ }
-.rpc-after { /* ... */ }
-.rpc-range-wrap { /* ... */ }
-.rpc-range-val { /* ... */ }
-.rpc-cancel-btn { /* ... */ }
-.rpc-action-btn { /* ... */ }
-.rpc-input-file { /* ... */ }
 ```
 
