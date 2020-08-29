@@ -1,6 +1,6 @@
 # React Photo Crop #
 
-## <a href="http://34.66.39.240/demo/react-photo-crop/dev/" target="_blank">See Demo</a> ##
+## [**See Demo**](http://34.66.39.240/demo/react-photo-crop/dev/) ##
 
 ## Installation ##
 
@@ -17,7 +17,7 @@ npm install react-photo-crop@1.0.0-beta-f
 ## Usage ##
 
 ```javascript
-// App.jsx
+// SomeComponent.jsx
 
 import { 
     RPCCtxState, 
@@ -30,7 +30,7 @@ import {
 const useState = React.useState;
 const target = document.getElementById('root');
 
-function App() {
+function SomeComponent() {
 
     const [src, setSrc] = useState("");
     const rpc = useRPC();
@@ -59,9 +59,9 @@ function App() {
                     
                     {/* handler function needs to be 
                     provided in order to retriev data */}
-
                     rpcHandler={handler}    
                 />
+
             </RPCCtxState>
         
             {/* the cropped part will appear here,
@@ -72,5 +72,88 @@ function App() {
     )
 }
 
-ReactDOM.render(<App />, target)
 ```
+
+## Styling ##
+
+### Inline styling ###
+
+```javascript
+import { 
+    RPCCtxState, 
+    RPCStyles, 
+    RPCModal, 
+    RPCButton, 
+    useRPC 
+} from 'ReactPhotoCrop';
+
+const useState = React.useState;
+const target = document.getElementById('root');
+
+// adding classNames to elements
+RPCStyles.addClassName(
+    '<targetElement>', 
+    ['classNameToAdd1', 'classNameToAdd2']
+);
+
+// styling elements
+RPCStyles.addStyles(
+    '<targetElement>', 
+    { color: 'green', backGround: '#000' }
+);
+
+// see available target elements
+
+function SomeComponent() {
+
+    // ...code
+```
+#### available target elements ####
+
+```javascript
+// available target elements for adding inline styles and classes
+'modal', 'window', 'cropOut',
+'crop', 'cropIn', 'photoCrop', 'img',
+'after', 'zoom', 'rangeWrap',
+'range', 'rangeVal', 'buttons', 'cancelBtn', 
+'actionBtn', 'inputFileBtn'
+
+// example adding inline styles
+RPCStyles.addStyles(
+    'inputFileBtn', // <- target element
+    { display: 'flex', flexDicrection: 'col' }
+);
+
+
+// example adding classNames
+RPCStyles.addClassName(
+    'inputFileBtn', 
+    ['arrayOf', 'classes']
+);
+
+// or 
+RPCStyles.addClassName(
+    'inputFileBtn', 
+    'single'
+);
+```
+
+### CSS ### 
+this is preferable option
+```css
+/* selectors  */
+.rpc-modal { /* ... */ }
+.rpc-window { /* ... */ }
+.rpc-crop-out { /* ... */ }
+.rpc-crop { /* ... */ }
+.rpc-crop-in { /* ... */ },
+.rpc-photo-crop { /* ... */ }
+.rpc-img { /* ... */ }
+.rpc-after { /* ... */ }
+.rpc-range-wrap { /* ... */ }
+.rpc-range-val { /* ... */ }
+.rpc-cancel-btn { /* ... */ }
+.rpc-action-btn { /* ... */ }
+.rpc-input-file { /* ... */ }
+```
+
