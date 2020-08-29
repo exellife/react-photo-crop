@@ -1,6 +1,6 @@
 # React Photo Crop #
 
-## [**Demo**](http://34.66.39.240/demo/react-photo-crop/dev/) ##
+## <a href="http://34.66.39.240/demo/react-photo-crop/dev/" target="_blank">See Demo</a> ##
 
 ## Installation ##
 
@@ -64,11 +64,9 @@ function App() {
                 />
             </RPCCtxState>
         
-            {/* 
-                the cropped part will appear here,
+            {/* the cropped part will appear here,
                 this is used for demo purposes...
-                see handler function above
-             */}
+                see handler function above */}
             <img src={src} alt="" />
         </>
     )
