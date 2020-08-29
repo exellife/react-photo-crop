@@ -133,6 +133,27 @@ RPCStyles.addStyles(
 function SomeComponent() {
 
     // ...code
+
+    return (
+        <>  
+            <RPCCtxState>
+                {/* pass adjusted RPCStyles to the the element  */}
+                <RPCButton {...RPCStyles.config} />
+
+                <RPCModal
+                    {...RPCStyles.config}
+                    
+                    {/* handler function needs to be 
+                    provided in order to retriev data */}
+                    rpcHandler={handler}    
+                />
+
+            </RPCCtxState>
+        
+            <img src={src} alt="" />
+        </>
+    )
+}
 ```
 #### available target elements ####
 
