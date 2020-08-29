@@ -137,11 +137,11 @@ function SomeComponent() {
     return (
         <>  
             <RPCCtxState>
-                {/* pass adjusted RPCStyles to the the element  */}
+                {/* pass adjusted RPCStyles to the the component as shown below */}
                 <RPCButton {...RPCStyles.config} />
 
                 {/* ...code */}
-                
+
             </RPCCtxState>
         
         </>
