@@ -28,7 +28,6 @@ import {
 } from 'ReactPhotoCrop';
 
 const useState = React.useState;
-const target = document.getElementById('root');
 
 function SomeComponent() {
 
@@ -47,7 +46,7 @@ function SomeComponent() {
             // get the data
             // do whatever you want...
             // in this case it's setting src attribute
-            // for <img> tag
+            // for <img /> tag
             .then(data => setSrc(data)) 
             .catch(e => console.log(e));
     };
