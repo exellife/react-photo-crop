@@ -140,17 +140,10 @@ function SomeComponent() {
                 {/* pass adjusted RPCStyles to the the element  */}
                 <RPCButton {...RPCStyles.config} />
 
-                <RPCModal
-                    {...RPCStyles.config}
-                    
-                    {/* handler function needs to be 
-                    provided in order to retriev data */}
-                    rpcHandler={handler}    
-                />
-
+                {/* ...code */}
+                
             </RPCCtxState>
         
-            <img src={src} alt="" />
         </>
     )
 }
